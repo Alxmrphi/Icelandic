@@ -45,7 +45,7 @@ corpus = MIM_Parser('/home/username/MIM_data')
 Before building the model, there is a bit to say about some of the parameters that need to be chosen.
 #### size
 
-The size parameter dictates the dimensionality of each word embedding. The default is 100, but many large applications of Word2Vec use significantly more than this. The larger the dimensionality, the more data needed to train the model in order for those feature vectors to be _good_. There is a fair amount of data in the MÍM corpus, so I chose 250 features. Essentially, in the neural network model these just
+The size parameter dictates the dimensionality of each word embedding. Word2Vec's default is 100, but many large applications of Word2Vec use significantly more than this. The larger the dimensionality, the more data needed to train the model in order for those feature vectors to be _good_. There is a fair amount of data in the MÍM corpus, so I chose 250 features. Word2Vec uses a neural network with only a single hidden layer, with **"size"** nodes in the hidden layer. The learned weights of each neuron in the hidden layer after training are exactly these features. Therefore, the larger the dimensionality of your word vectors, the more nodes in a hidden layer. This is why increasing the dimensionality requires more data to learn good representations from.
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
