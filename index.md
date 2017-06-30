@@ -4,11 +4,17 @@ This tutorial aims to illustrate how to build a simple word embedding model for 
 
 ### Word embedding models
 
-The idea 
+The idea behind word embedding is to look at a word in its surrounding context and derive a representation for it that exists in a high dimensional vector space. Even if the words 'dog' and 'canine' do not ever occur together in a specific training corpus, the environments in which they do occur (dictated by the surrounding context words) are enough for their embedding to be similar. Then, mathemetical measures of similarity on vectors would be able to detect that 'canine' is in fact a very similar word to 'dog' and less so to the word 'apple'. This idea is captured nicely in what is known as the distributional hypothesis.
 
 ### The distributional hypothesis
 
-Blah blah
+The distributional hypothesis is stated in many closely-related forms. I hope by just picking a few quotes from other sources that the idea becomes clear:
+
+(1) You shall know a word by the company it keeps
+(2) Words that occur in similar contexts have similar representations
+(3) The meaning of a word can be understood from the words that tend to occur around it
+
+
 
 ### Skip-gram vs CBOW
 
@@ -42,10 +48,12 @@ Now you can instantiate the class and point it to your the new directly where th
 ```markdown
 corpus = MIM_Parser('/home/username/MIM_data')
 ```
+This implementation only selects the lemmas as I doubt there is enough data to learn a good representation for every possible form of a word across all cases and number. A lot of information would be lost if each word declension is treated as a separate vocabulary item. Perhaps easier access to larger data sets in the future might change that. This has an implication on the kinds of questions we can ask the model, namely that we cannot inspect vector dimensions that encode for case or tense when only modelling the lemmas.
+
 Before building the model, there is a bit to say about some of the parameters that need to be chosen.
 #### size
 
-The size parameter dictates the dimensionality of each word embedding. Word2Vec's default is 100, but many large applications of Word2Vec use significantly more than this. The larger the dimensionality, the more data needed to train the model in order for those feature vectors to be _good_. There is a fair amount of data in the MÍM corpus, so I chose 250 features. Word2Vec uses a neural network with only a single hidden layer, with **"size"** nodes in the hidden layer. The learned weights of each neuron in the hidden layer after training are exactly these features. Therefore, the larger the dimensionality of your word vectors, the more nodes are in the hidden layer. This is why increasing the dimensionality requires more data to learn good representations from.
+The size parameter dictates the dimensionality of each word embedding. Word2Vec's default is 100, but many large applications of Word2Vec use significantly more than this. The larger the dimensionality, the more data needed to train the model in order for those feature vectors to be _good_. There is a fair amount of data in the MÍM corpus, so I chose 250 features in each word embedding. Word2Vec uses a neural network with only a single hidden layer, with **"size"** nodes in the hidden layer. The learned weights of each neuron in the hidden layer after training are exactly these features. Therefore, the larger the dimensionality of your word vectors, the more nodes are in the hidden layer. This is why increasing the dimensionality requires more data to learn good representations from.
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
