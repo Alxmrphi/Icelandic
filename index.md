@@ -53,7 +53,15 @@ This implementation only selects the lemmas as I doubt there is enough data to l
 Before building the model, there is a bit to say about some of the parameters that need to be chosen.
 #### size
 
-The size parameter dictates the dimensionality of each word embedding. Word2Vec's default is 100, but many large applications of Word2Vec use significantly more than this. The larger the dimensionality, the more data needed to train the model in order for those feature vectors to be _good_. There is a fair amount of data in the MÍM corpus, so I chose 250 features in each word embedding. Word2Vec uses a neural network with only a single hidden layer, with **"size"** nodes in the hidden layer. The learned weights of each neuron in the hidden layer after training are exactly these features. Therefore, the larger the dimensionality of your word vectors, the more nodes are in the hidden layer. This is why increasing the dimensionality requires more data to learn good representations from.
+The size parameter dictates the dimensionality of each word embedding. Word2Vec's default is 100, but many large applications of Word2Vec use significantly more than this. The larger the dimensionality, the more data needed to train the model in order for those feature vectors to be _good_. There is a fair amount of data in the MÍM corpus, so I chose 250 features in each word embedding. Word2Vec uses a neural network with only a single hidden layer, with **"size"** nodes in the hidden layer. The learned weights of each neuron in the hidden layer after training are exactly these features. Therefore, the larger the dimensionality of your word vectors, the more nodes are in the hidden layer. This is why increasing the dimensionality requires more data to learn good representations from. The more features any model has, the more data is required to train them.
+
+### window
+
+Given the definitions of the distributional hypothesis above, one might ask how close does a word have to occur with another word for it to be considered relevant to its vector space representation. This is defined by the **window** parameter. Word2Vec's default is 5, which means as the model iteratively runs through the corpus, only words a distance of maximum **window** words away are considered. This means that if a context word always occurs six words before / after a target word during training, the model will fail to pick this up. Increasing the window size allows for more general inference of words that are more loosely connected to the specific target word being trained. Shorter windows are useful for determining words that are functionally similar, synonyms etc. The default window size (5) is used in this implementation.
+
+### min_count
+
+This parameter sets the thresholds for words we consider as part of the vocabulary. Very rare words, that only occur once or twice in our corpus, are pretty useless given that there isn't enough data to learn a good word embedding for them. Therefore, by purging these words from the vocabulary, it makes the training phase more efficient and allows us to fit more common words in our window of interest (described above), which greatly aids the modelling process.
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
