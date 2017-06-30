@@ -1,10 +1,17 @@
-## Orð2vec - Quick word embedding tutorial for Icelandic
+## Orð2Vec - Quick word embedding tutorial for Icelandic
 
-You can use the [editor on GitHub](https://github.com/Alex159/Icelandic/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+This tutorial aims to illustrate how to build a simple word embedding model for Icelandic using Word2Vec, implemented in the gensim library. Many of the details will be overlooked as the goal is simply to show how to create your own model and some of the interesting applications that can be applied.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Word embedding models
 
-### Markdown
+The idea 
+
+### The distributional hypothesis
+
+Blah blah
+
+### Skip-gram vs CBOW
+
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
