@@ -24,7 +24,6 @@ The corpus used to generate the word embeddings is _Mörkuð Íslensk Málheild_
 
 
 ```markdown
-{% highlight python %}
 import os
 from xml.dom.minidom import parse
 
@@ -44,8 +43,6 @@ class MIM_Parser(object):
                         for word in words:
                             cs.append(word.getAttribute('lemma'))
                         yield cs
-{% endhighlight %}
-
 ```
 
 Now you can instantiate the class and point it to your the new directly where the text folders are:
