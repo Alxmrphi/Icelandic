@@ -22,7 +22,7 @@ The distributional hypothesis is stated in many closely-related forms. I hope by
 
 The corpus used to generate the word embeddings is _Mörkuð Íslensk Málheild_ and can be found at [malfong.is](http://malfong.is/?pg=mim). It is a corpus of 499,355 sentences with 165,081 lemmas that appear at least three times. After downloading and extracting the data to a new folder, you can define the following python class that will read the folder iteratively while the model is trained. This means that you do not need to store the entire corpus (1.7GB) in RAM at the same time (very handy).
 
-```markdown
+{% highlight python %}
 import os
 from xml.dom.minidom import parse
 
@@ -42,7 +42,8 @@ class MIM_Parser(object):
                         for word in words:
                             cs.append(word.getAttribute('lemma'))
                         yield cs
-```
+{% endhighlight %}
+
 Now you can instantiate the class and point it to your the new directly where the text folders are:
 
 ```markdown
