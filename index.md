@@ -238,7 +238,7 @@ Word2Vec also supports a **doesnt_match** function, which parses a string of wor
 In: model.doesnt_match("epli banani appelsína hundur".split())
 Out: 'hundur'
 
-In> model.doesnt_match("orð hljóð málfræði setning sturta setningafræði málvísindi".split())
+In: model.doesnt_match("orð hljóð málfræði setning sturta setningafræði málvísindi".split())
 Out: 'sturta'
 ```
 
