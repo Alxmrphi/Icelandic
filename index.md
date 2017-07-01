@@ -27,7 +27,7 @@ Here is an example to illustrate the idea behind what we are trying to do with w
  <img src="https://github.com/Alex159/Icelandic/blob/master/main-qimg-3e812fd164a08f5e4f195000fecf988f.png">
  
  
- You don't need to fully understand how the algorithm derives these word vectors / word embeddings, but it is important to grasp the nature of what is computed. In the image above, in 3-dimensional space, you can see that **porpoise**, **dolphin** and **SeaWorld** cluster together quite closely, as we would expect them to as all these words relate in some sense to sea animals. The area around **Paris** would likely be where other cities clustered, a different direction to objects that exist around the word **camera**.
+ You don't need to fully understand how the algorithm derives these word vectors / word embeddings, but it is important to grasp the nature of what is computed. In the image above, in 3-dimensional space, you can see that **porpoise**, **dolphin** and **SeaWorld** cluster together quite closely, as we would expect them to as all these words relate in some sense to sea animals. The area around **Paris** would likely be where other cities clustered.
 
 
 ### Dataset
@@ -62,7 +62,7 @@ Now you can instantiate the class and point it to your the new directly where th
 ```python
 corpus = MIM_Parser('/home/username/MIM_data')
 ```
-This implementation only selects the lemmas as I doubt there is enough data to learn a good representation for every possible form of a word across all cases and number. A lot of information would be lost if each word declension is treated as a separate vocabulary item. Perhaps easier access to larger data sets in the future might change that. This has an implication on the kinds of questions we can ask the model, namely that we cannot inspect vector dimensions that encode for case or tense when only modelling the lemmas.
+This implementation only selects the lemmas as I doubt there is enough data to learn a good representation for every possible form of a word across all grammatical cases / verb tenses etc. A lot of information would be lost if each noun declension and verb conjugation ar treated as a separate vocabulary item. Perhaps easier access to larger data sets in the future might change that. This has an implication on the kinds of questions we can ask the model, namely that we cannot inspect vector dimensions that encode for case or tense when only modelling the lemmas.
 
 Before building the model, there is a bit to say about some of the parameters that need to be chosen.
 ### size
@@ -93,10 +93,32 @@ It is also possible to perform linear algebra on the word vectors to explore sem
 
 The classic example is:
 
-$$King - Man + Woman = Queen$$
+```markdown
+King - Man + Woman = Queen
+```
+Namely, the vector that encodes the concept of _king_ subtracted from the vector that encodes the concept of _man_, added to the vector that represents the concept of _woman_ should, in a sensible vector space model, give us a word that is used that can be described as a "female king", which would be a queen. If enough sensible data is available, then vector space models can be shown to be robust enough to reflect commonsense ideas.
+
+## Evaluation (sort of)
+
+There is no clear notion of how to evaluate word embeddings because they are used in a number of downstream tasks. Having a vector form of a word is the basis of many, many tasks in neural language modelling. The creation of the vectors is often not the end goal, but it is certainly interesting to look at the semantic relations that they encode. A common Word2Vec evaluation is to compare predictions across expected relations, however this is only available for a few languages and often relies on grammatical dimensions such as superlatives and comparatives of adjectives, which were not taken into consideration by only extracting the lemmas in the model building. 
+
+We can ask the model how similar two words are, which returns a value in [0,1] where 0 reflects no similarity and 1 reflects perfect similarity.
+
+```python
+In: model.similarity('epli', 'banani')
+Out: 0.69567852755867421
+
+In: model.similarity('stelpa', 'stúlka')
+Out: 0.72690841288475661
+
+In:model.similarity('bók', 'fíll')
+Out: 0.15155624688253724
+```
+The vectors for **epli** and **banani** are fairly similar, but not as similar as **stelpa** and **stúlka**. Lastly, **bók** and **fíll** are, naturally, not very similar at all.
 
 
-## Evaluation
+
+Word2Vec offers a function called **most_similar**, which takes in a list of positive words, adds their respective word vectors together and then can subtract a different word's vector, resulting in a list of the top **n** results. Here, topn=1 so that only the closest word vector is returned.
 
 ```python
 In: model.most_similar(positive=['kona', 'kóngur'], negative=['maður'], topn=1)
