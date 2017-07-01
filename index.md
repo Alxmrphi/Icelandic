@@ -20,7 +20,10 @@ The distributional hypothesis is stated in many closely-related forms. I hope by
 
 (3) The meaning of a word can be understood from the words that tend to occur around it.
 
-
+### Visualisation
+Here is an example to illustrate the idea behind what we are trying to do with word embeddings. We use the Word2Vec algorithm to transform a word into a numerical representation that is structured so that words that appear in similar contexts have "closer" distances to one another. This represents semantic relatedness in a numerical form. Let's say we had the words **Paris**, **porpoise**, **dolphin**, **camera**, **SeaWorld**.
+ <img src="https://github.com/Alex159/Icelandic/blob/master/main-qimg-3e812fd164a08f5e4f195000fecf988f.png">
+ You don't need to fully understand how the algorithm derives these word vectors / word embeddings, but it is important to grasp the nature of what is computed. In the image above, in 3-dimensional space, you can see that porpoise, dolphin and SeaWorld cluster together quite closely, as we would expect them to as all these words relate in some sense to sea animals. The area around **Paris** would likely be where other cities clustered, a different direction to objects that exist around the word **camera**.
 
 ### Skip-gram vs CBOW
 
@@ -186,4 +189,6 @@ Out:
 ```
 These seem more sensible. This goes to show the effect that good qualitiative data has on word embedding models (or rather, any model).
 
+## What now?
 
+While it is fun to play around 
