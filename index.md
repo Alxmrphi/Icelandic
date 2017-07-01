@@ -1,4 +1,5 @@
-## Orð2Vec - Quick word embedding tutorial for Icelandic
+# Orð2Vec
+### Quick word embedding tutorial for Icelandic
 
 This tutorial aims to illustrate how to build a simple word embedding model for Icelandic using Word2Vec, implemented in the gensim library. Many of the details will be overlooked as the goal is simply to show how to create your own model and some of the interesting applications that can be applied.
 
@@ -88,6 +89,11 @@ Now that the model has been trained, we can visualise a raw vector to see what o
 
 We can also compare the similarity between two word vectors:
 
+It is also possible to perform linear algebra on the word vectors to explore semantic relationships. This was a huge discovery that came as a surprise to many people. Even only 4-5 years ago, when Mikolov had written the Word2Vec algorithm, his supervisor did not believe it was possible until he was taken to the computer and shown many examples.
+
+The classic example is:
+
+$$King - Man + Woman = Queen$$
 
 
 ## Evaluation
