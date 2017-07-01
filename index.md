@@ -74,6 +74,7 @@ This parameter sets the threshold for words we consider as part of the vocabular
 Now, we are ready to train the model:
 
 ```markdown
+from gensim.models.word2vec import Word2Vec
 model = Word2Vec(corpus, size=250, window=5, min_count=3)
 ```
 ## Inspecting the model
