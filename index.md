@@ -11,8 +11,10 @@ The idea behind word embedding is to look at a word in its surrounding context a
 The distributional hypothesis is stated in many closely-related forms. I hope by just picking a few quotes from other sources that the idea becomes clear:
 
 (1) You shall know a word by the company it keeps
+
 (2) Words that occur in similar contexts have similar representations
-(3) The meaning of a word can be understood from the words that tend to occur around it
+
+(3) The meaning of a word can be understood from the words that tend to occur around it.
 
 
 
