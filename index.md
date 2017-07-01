@@ -71,32 +71,20 @@ Given the definitions of the distributional hypothesis above, one might ask how 
 
 This parameter sets the threshold for words we consider as part of the vocabulary. Very rare words, that only occur once or twice in our corpus, are pretty useless given that there isn't enough data to learn a good word embedding for them. Therefore, by purging these words from the vocabulary, it makes the training phase more efficient and allows us to fit more common words in our window of interest (described above), which greatly aids the modelling process.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Evaluation
 
 ```markdown
-Syntax highlighted code block
+In: model.most_similar(positive=['kona', 'kóngur'], negative=['maður'], topn=1)
+Out: [('drottning', 0.6090534925460815)]
 
-# Header 1
-## Header 2
-### Header 3
+In: model.most_similar(positive=['kona', 'drengur'], negative=['maður'], topn=1)
+Out: [('stúlka', 0.7293691039085388)]
 
-- Bulleted
-- List
+In: model.most_similar(positive=['hann', 'kvenkyn'], negative=['hún'], topn=1)
+Out: [('karlkyn', 0.7098826169967651)]
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
-```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Alex159/Icelandic/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
