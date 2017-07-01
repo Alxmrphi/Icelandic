@@ -217,6 +217,15 @@ Out:
 ```
 These seem more sensible. This goes to show the effect that good qualitiative data has on word embedding models (or rather, any model).
 
+Word2Vec also supports a **doesnt_match** function, which parses a string of words and picks out the one that sticks out as not being similar to the others:
+
+```python
+In: model.doesnt_match("epli banani appelsína hundur".split())
+Out: 'hundur'
+
+In> model.doesnt_match("orð hljóð málfræði setning sturta setningafræði málvísindi".split())
+Out: 'sturta'
+```
 
 ## Summary
 Vector space models of word embeddings are a fun tool to explore the geometric relationships between words and can be created with access to corpus data. Having an understanding of words being embedded in a geometric space is useful for many applications of neural networks with NLP (Natural Language Processing). The primary goal was to show that anyone who is interested in the topic has access to the tools needed to build an "Orð2Vec" model on their laptops / computers and can mess around with what is possible. Perhaps by changing the hyperparameters (or even modelling on the raw words and not just the lemmas) that interesting results can be found. It would be particularly interesting to see how tense and grammatical case might be modelled. I wonder whether it would be able to model things like:
@@ -225,4 +234,4 @@ Vector space models of word embeddings are a fun tool to explore the geometric r
 bók + menn - maður = bækur
 hundur - hundi + Egill = Agli
 ```
-(menn-maður) therefore represents a vector that encodes _plurality_, while (hundur-hundi) would encode a sense of _dativeness_.
+(menn-maður) therefore represents a vector that encodes _plurality_, while (hundur-hundi) would encode a sense of _dativeness_. Being able to model these aspects of language while only training on words from a corpus is very cool. There is, of course, a lot more interesting (and more complicated) applications. I hope that this inspires a few people to want to play around and think about this a little more.
