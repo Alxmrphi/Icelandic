@@ -100,7 +100,7 @@ Namely, the vector that encodes the concept of _king_ subtracted from the vector
 
 ## Evaluation (sort of)
 
-There is no clear notion of how to evaluate word embeddings because they are used in a number of downstream tasks. Having a vector form of a word is the basis of many, many tasks in neural language modelling. The creation of the vectors is often not the end goal, but it is certainly interesting to look at the semantic relations that they encode. A common Word2Vec evaluation is to compare predictions across expected relations, however this is only available for a few languages and often relies on grammatical dimensions such as superlatives and comparatives of adjectives, which were not taken into consideration by only extracting the lemmas in the model building. 
+There is no clear notion of how to evaluate word embeddings because they are used in a number of downstream tasks, such as MNT (Neural Machine Translation), NER (Named Entity Recognition),  among many others. Having a vector form of a word is the basis of many, many tasks in neural language modelling. The creation of the vectors is often not the end goal, but it is certainly interesting to look at the semantic relations that they encode. A common Word2Vec evaluation is to compare predictions across expected relations, however this is only available for a few languages and often relies on grammatical dimensions such as superlatives and comparatives of adjectives, which were not taken into consideration by only extracting the lemmas in the model building. 
 
 We can ask the model how similar two words are, which returns a value in [0,1] where 0 reflects no similarity and 1 reflects perfect similarity.
 
@@ -115,8 +115,6 @@ In:model.similarity('bók', 'fíll')
 Out: 0.15155624688253724
 ```
 The vectors for **epli** and **banani** are fairly similar, but not as similar as **stelpa** and **stúlka**. Lastly, **bók** and **fíll** are, naturally, not very similar at all.
-
-
 
 Word2Vec offers a function called **most_similar**, which takes in a list of positive words, adds their respective word vectors together and then can subtract a different word's vector, resulting in a list of the top **n** results. Here, topn=1 so that only the closest word vector is returned.
 
@@ -149,7 +147,7 @@ Out: [('flugvöllur', 0.6099342107772827)]
 ```
 As expected!
 
-It can even model the relationship among grammatical terms, from a corpus that doesn't appear to have any explicit grammatical descriptions (please correct me if I am wrong). For example, what is, to a noun, what an adverb is to a verb?
+It can even model the relationship among grammatical terms, from a corpus that doesn't appear to have any explicit grammatical descriptions (please correct me if I am wrong). For example, **what is, to a noun, what an adverb is to a verb?**
 ```python
 model.most_similar(positive=['nafnorð', 'atviksorð'], negative=['sagnorð'], topn=1)
 Out: [('lýsingarorð', 0.6917917132377625)]
@@ -219,6 +217,11 @@ Out:
 ```
 These seem more sensible. This goes to show the effect that good qualitiative data has on word embedding models (or rather, any model).
 
-## What now?
 
-While it is fun to play around 
+## Summary
+Vector space models of word embeddings are a fun tool to explore the geometric relationships between words and can be created with access to corpus data. Having an understanding of words being embedded in a geometric space is useful for many applications of neural networks with NLP (Natural Language Processing). The primary goal was to show that anyone who is interested in the topic has access to the tools needed to build an "Orð2Vec" model on their laptops / computers and can mess around with what is possible. Perhaps by changing the hyperparameters (or even modelling on the raw words and not just the lemmas) that interesting discoveries can be found. It would be particularly interesting to see how tense and grammatical case might be modelled. I wonder whether it would be able to model things like:
+
+```python
+bók + menn - maður = bækur
+hundur - hundi + Egill = Agli
+```
