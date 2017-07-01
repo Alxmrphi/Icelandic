@@ -183,6 +183,6 @@ Out:
  ('írlandi', 0.4321120083332062)]
  
 ```
-These seem more sensible. This goes to show the effect that good qualitiative data has on word embedding models.
+These seem more sensible. This goes to show the effect that good qualitiative data has on word embedding models (or rather, any model).
 
 
