@@ -34,7 +34,7 @@ Here is an example to illustrate the idea behind what we are trying to do with w
 The corpus used to generate the word embeddings is _Mörkuð Íslensk Málheild_ and can be found at [malfong.is](http://malfong.is/?pg=mim). It is a corpus of 499,355 sentences with 165,081 lemmas that appear at least three times. After downloading and extracting the data to a new folder, you can define the following python class that will read the folder iteratively while the model is trained. This means that you do not need to store the entire corpus (1.7GB) in RAM at the same time (very handy).
 
 
-```markdown
+```python
 import os
 from xml.dom.minidom import parse
 
@@ -58,7 +58,7 @@ class MIM_Parser(object):
 
 Now you can instantiate the class and point it to your the new directly where the text folders are:
 
-```markdown
+```python
 corpus = MIM_Parser('/home/username/MIM_data')
 ```
 This implementation only selects the lemmas as I doubt there is enough data to learn a good representation for every possible form of a word across all cases and number. A lot of information would be lost if each word declension is treated as a separate vocabulary item. Perhaps easier access to larger data sets in the future might change that. This has an implication on the kinds of questions we can ask the model, namely that we cannot inspect vector dimensions that encode for case or tense when only modelling the lemmas.
@@ -78,7 +78,7 @@ This parameter sets the threshold for words we consider as part of the vocabular
 
 Now, we are ready to train the model:
 
-```markdown
+```python
 from gensim.models.word2vec import Word2Vec
 model = Word2Vec(corpus, size=250, window=5, min_count=3)
 ```
@@ -92,7 +92,7 @@ We can also compare the similarity between two word vectors:
 
 ## Evaluation
 
-```markdown
+```python
 In: model.most_similar(positive=['kona', 'kóngur'], negative=['maður'], topn=1)
 Out: [('drottning', 0.6090534925460815)]
 
@@ -109,20 +109,20 @@ In: model.most_similar(positive=['skóli', 'prófessor'], negative=['háskóli']
 Out: [('skólastjóri', 0.5468635559082031)]
 ```
 But it is not always completely correct. Consider the following, where an expected word would be _höfn_:
-```markdown
+```python
 In: model.most_similar(positive=['bátur', 'flugvöllur'], negative=['flugvél'], topn=1)
 Out: [('lóð', 0.5703256130218506)]
 ```
 It looks like the corpus (with our predefined hyperparameters) doesn't allow for such a good inference in this case.
 However, perhaps given that airports are more represented in the corpus rather than harbours, it could pick up on the correct semantic relation with a different ordering of the word vectors:
-```markdown
+```python
 In: model.most_similar(positive=['flugvél', 'höfn'], negative=['bátur'], topn=1)
 Out: [('flugvöllur', 0.6099342107772827)]
 ```
 As expected!
 
 It can even model the relationship among grammatical terms, from a corpus that doesn't appear to have any explicit grammatical descriptions (please correct me if I am wrong). For example, what is, to a noun, what an adverb is to a verb?
-```markdown
+```python
 model.most_similar(positive=['nafnorð', 'atviksorð'], negative=['sagnorð'], topn=1)
 Out: [('lýsingarorð', 0.6917917132377625)]
 ```
@@ -130,7 +130,7 @@ An adjective!
 
 The word embeddings shown here are all good examples of good modelling, but you shouldn't think this is a perfect model by any means. For example, here are closest word vectors to _máltækni_ 
 
-```markdown
+```python
 In: model.most_similar('máltækni')
 Out[
 [('wallau-massenheim', 0.8737115859985352),
@@ -148,7 +148,7 @@ Perhaps it is too cruel to judge such a small corpus on how well it can model su
 
 Here are the most similar word vectors for (1) **pilot**, (2) **apple** and (3) **Iceland**:
 
-```markdown
+```python
 model.most_similar('flugmaður')
 Out: 
 [('flugstjóri', 0.6587222218513489),
