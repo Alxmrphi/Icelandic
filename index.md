@@ -89,7 +89,7 @@ Out: [('hvolpur', 0.7297102212905884)]
 In: model.most_similar(positive=['skóli', 'prófessor'], negative=['háskóli'], topn=1)
 Out: [('skólastjóri', 0.5468635559082031)]
 ```
-But it is not always completely correct. Consider the following, where an expected word would be "höfn":
+But it is not always completely correct. Consider the following, where an expected word would be _höfn_:
 ```markdown
 In: model.most_similar(positive=['bátur', 'flugvöllur'], negative=['flugvél'], topn=1)
 Out: [('lóð', 0.5703256130218506)]
