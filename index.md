@@ -219,7 +219,7 @@ These seem more sensible. This goes to show the effect that good qualitiative da
 
 
 ## Summary
-Vector space models of word embeddings are a fun tool to explore the geometric relationships between words and can be created with access to corpus data. Having an understanding of words being embedded in a geometric space is useful for many applications of neural networks with NLP (Natural Language Processing). The primary goal was to show that anyone who is interested in the topic has access to the tools needed to build an "Orð2Vec" model on their laptops / computers and can mess around with what is possible. Perhaps by changing the hyperparameters (or even modelling on the raw words and not just the lemmas) that interesting discoveries can be found. It would be particularly interesting to see how tense and grammatical case might be modelled. I wonder whether it would be able to model things like:
+Vector space models of word embeddings are a fun tool to explore the geometric relationships between words and can be created with access to corpus data. Having an understanding of words being embedded in a geometric space is useful for many applications of neural networks with NLP (Natural Language Processing). The primary goal was to show that anyone who is interested in the topic has access to the tools needed to build an "Orð2Vec" model on their laptops / computers and can mess around with what is possible. Perhaps by changing the hyperparameters (or even modelling on the raw words and not just the lemmas) that interesting results can be found. It would be particularly interesting to see how tense and grammatical case might be modelled. I wonder whether it would be able to model things like:
 
 ```python
 bók + menn - maður = bækur
