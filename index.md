@@ -118,7 +118,7 @@ Out: 0.69567852755867421
 In: model.similarity('stelpa', 'stúlka')
 Out: 0.72690841288475661
 
-In:model.similarity('bók', 'fíll')
+In: model.similarity('bók', 'fíll')
 Out: 0.15155624688253724
 ```
 The vectors for **epli** and **banani** are fairly similar, but not as similar as **stelpa** and **stúlka**. Lastly, **bók** and **fíll** are, naturally, not very similar at all.
