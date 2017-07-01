@@ -71,6 +71,12 @@ Given the definitions of the distributional hypothesis above, one might ask how 
 
 This parameter sets the threshold for words we consider as part of the vocabulary. Very rare words, that only occur once or twice in our corpus, are pretty useless given that there isn't enough data to learn a good word embedding for them. Therefore, by purging these words from the vocabulary, it makes the training phase more efficient and allows us to fit more common words in our window of interest (described above), which greatly aids the modelling process.
 
+Now, we are ready to train the model:
+
+```markdown
+model = Word2Vec(corpus, size=250, window=5, min_count=3)
+```
+
 ## Evaluation
 
 ```markdown
