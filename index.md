@@ -86,8 +86,15 @@ model = Word2Vec(corpus, size=250, window=5, min_count=3)
 And we're done building the model (though this step could take a little while on some systems).
 ## Inspecting the model
 
-Now that the model has been trained, we can visualise a raw vector to see what one looks like
+Now that the model has been trained, we can visualise a raw vector to see what one looks like:
 
+```python
+model['gluggaveður']
+Out: 
+array([ 0.03100182, -0.04883416,  0.06810944, ...,  0.02654201,
+        0.02684882,  0.00160751], dtype=float32)
+```
+As you can see, it literally just is a bunch of (250) numbers.
 We can also compare the similarity between two word vectors:
 
 It is also possible to perform linear algebra on the word vectors to explore semantic relationships. This was a huge discovery that came as a surprise to many people. Even only 4-5 years ago, when Mikolov had written the Word2Vec algorithm, his supervisor did not believe it was possible until he was taken to the computer and shown many examples.
