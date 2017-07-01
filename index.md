@@ -83,7 +83,24 @@ Out: [('stúlka', 0.7293691039085388)]
 In: model.most_similar(positive=['hann', 'kvenkyn'], negative=['hún'], topn=1)
 Out: [('karlkyn', 0.7098826169967651)]
 
+In: model.most_similar(positive=['hundur', 'kettlingur'], negative=['köttur'], topn=1)
+Out: [('hvolpur', 0.7297102212905884)]
 
+In: model.most_similar(positive=['skóli', 'prófessor'], negative=['háskóli'], topn=1)
+Out: [('skólastjóri', 0.5468635559082031)]
+```
+But it is not always completely correct. Consider the following, where an expected word would be "höfn":
+```markdown
+In: model.most_similar(positive=['bátur', 'flugvöllur'], negative=['flugvél'], topn=1)
+Out: [('lóð', 0.5703256130218506)]
+```
+It looks like the corpus (with our predefined hyperparameters) doesn't allow for such a good inference in this case.
+However, perhaps given that airports are more represented in the corpus rather than harbours, it could pick up on the correct semantic relation with a different ordering of the word vectors:
+```markdown
+In: model.most_similar(positive=['flugvél', 'höfn'], negative=['bátur'], topn=1)
+Out: [('flugvöllur', 0.6099342107772827)]
+```
+As expected!
 
 
 
