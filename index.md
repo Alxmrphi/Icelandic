@@ -83,6 +83,7 @@ Now, we are ready to train the model:
 from gensim.models.word2vec import Word2Vec
 model = Word2Vec(corpus, size=250, window=5, min_count=3)
 ```
+And we're done building the model (though this step could take a little while on some systems).
 ## Inspecting the model
 
 Now that the model has been trained, we can visualise a raw vector to see what one looks like
