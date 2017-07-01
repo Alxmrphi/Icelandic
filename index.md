@@ -103,7 +103,7 @@ The classic example is:
 ```markdown
 King - Man + Woman = Queen
 ```
-Namely, the vector that encodes the concept of _king_ subtracted from the vector that encodes the concept of _man_, added to the vector that represents the concept of _woman_ should, in a sensible vector space model, give us a word that is used that can be described as a "female king", which would be a queen. If enough sensible data is available, then vector space models can be shown to be robust enough to reflect commonsense ideas.
+Namely, the vector that encodes the concept of _king_ subtracted from the vector that encodes the concept of _man_, added to the vector that represents the concept of _woman_ should, in a sensible vector space model, give us a word that is used that can be described as a "female king", which would be a queen. If enough sensible data is available, then vector space models can be shown to be robust enough to reflect commonsense ideas that make semantic sense to us.
 
 ## Evaluation (sort of)
 
