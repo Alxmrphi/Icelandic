@@ -247,6 +247,6 @@ Vector space models of word embeddings are a fun tool to explore the geometric r
 
 ```python
 bók + menn - maður = bækur
-hundur - hundi + Egill = Agli
+hundi - hundur + Egill = Agli
 ```
-(menn-maður) therefore represents a vector that encodes _plurality_, while (hundur-hundi) would encode a sense of _dativeness_. Being able to model these aspects of language while only training on words from a corpus is very cool. There is, of course, a lot more interesting (and more complicated) applications. I hope that this inspires a few people to want to play around and think about this a little more.
+(menn-maður) therefore represents a vector that encodes _plurality_, while (hundi-hundur) would encode a sense of _dativeness_. Being able to model these aspects of language while only training on words from a corpus is very cool. There is, of course, a lot more interesting (and more complicated) applications. I hope that this inspires a few people to want to play around and think about this a little more.
