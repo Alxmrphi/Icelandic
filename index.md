@@ -225,3 +225,4 @@ Vector space models of word embeddings are a fun tool to explore the geometric r
 bók + menn - maður = bækur
 hundur - hundi + Egill = Agli
 ```
+(menn-maður) therefore represents a vector that encodes _plurality_, while (hundur-hundi) would encode a sense of _dativeness_.
