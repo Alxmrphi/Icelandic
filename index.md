@@ -126,29 +126,36 @@ The vectors for **epli** and **banani** are fairly similar, but not as similar a
 Word2Vec offers a function called **most_similar**, which takes in a list of positive words, adds their respective word vectors together and then can subtract a different word's vector, resulting in a list of the top **n** results. Here, topn=1 so that only the closest word vector is returned.
 
 ```python
+Kona + Kóngur - Maður = ?
 In: model.most_similar(positive=['kona', 'kóngur'], negative=['maður'], topn=1)
 Out: [('drottning', 0.6090534925460815)]
 
+Kona + Drengur - Maður = ?
 In: model.most_similar(positive=['kona', 'drengur'], negative=['maður'], topn=1)
 Out: [('stúlka', 0.7293691039085388)]
 
+Hann + Kvenkyn - Hún = ?
 In: model.most_similar(positive=['hann', 'kvenkyn'], negative=['hún'], topn=1)
 Out: [('karlkyn', 0.7098826169967651)]
 
+Hundur + Kettlingur - Köttur = ?
 In: model.most_similar(positive=['hundur', 'kettlingur'], negative=['köttur'], topn=1)
 Out: [('hvolpur', 0.7297102212905884)]
 
+Skóli + Prófessor - Háskóli = ?
 In: model.most_similar(positive=['skóli', 'prófessor'], negative=['háskóli'], topn=1)
 Out: [('skólastjóri', 0.5468635559082031)]
 ```
 But it is not always completely correct. Consider the following, where an expected word would be _höfn_:
 ```python
+Bátur + Flugvöllur - Flugvél = ?
 In: model.most_similar(positive=['bátur', 'flugvöllur'], negative=['flugvél'], topn=1)
 Out: [('lóð', 0.5703256130218506)]
 ```
 It looks like the corpus (with our predefined hyperparameters) doesn't allow for such a good inference in this case.
 However, perhaps given that airports are more represented in the corpus rather than harbours, it could pick up on the correct semantic relation with a different ordering of the word vectors:
 ```python
+Flugvél + Höfn - Bátur = ?
 In: model.most_similar(positive=['flugvél', 'höfn'], negative=['bátur'], topn=1)
 Out: [('flugvöllur', 0.6099342107772827)]
 ```
@@ -156,6 +163,7 @@ As expected!
 
 It can even model the relationship among grammatical terms, from a corpus that doesn't appear to have any explicit grammatical descriptions (please correct me if I am wrong). For example, **what is, to a noun, what an adverb is to a verb?**
 ```python
+Nafnorð + Atviksorð - Sagnorð = ?
 model.most_similar(positive=['nafnorð', 'atviksorð'], negative=['sagnorð'], topn=1)
 Out: [('lýsingarorð', 0.6917917132377625)]
 ```
