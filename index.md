@@ -26,9 +26,8 @@ Here is an example to illustrate the idea behind what we are trying to do with w
  <img src="https://github.com/Alex159/Icelandic/blob/master/main-qimg-3e812fd164a08f5e4f195000fecf988f.png">
  
  
- You don't need to fully understand how the algorithm derives these word vectors / word embeddings, but it is important to grasp the nature of what is computed. In the image above, in 3-dimensional space, you can see that porpoise, dolphin and SeaWorld cluster together quite closely, as we would expect them to as all these words relate in some sense to sea animals. The area around **Paris** would likely be where other cities clustered, a different direction to objects that exist around the word **camera**.
+ You don't need to fully understand how the algorithm derives these word vectors / word embeddings, but it is important to grasp the nature of what is computed. In the image above, in 3-dimensional space, you can see that **porpoise**, **dolphin** and **SeaWorld** cluster together quite closely, as we would expect them to as all these words relate in some sense to sea animals. The area around **Paris** would likely be where other cities clustered, a different direction to objects that exist around the word **camera**.
 
-### Skip-gram vs CBOW
 
 ### Dataset
 
