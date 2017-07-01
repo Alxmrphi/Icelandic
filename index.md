@@ -76,6 +76,13 @@ Now, we are ready to train the model:
 ```markdown
 model = Word2Vec(corpus, size=250, window=5, min_count=3)
 ```
+## Inspecting the model
+
+Now that the model has been trained, we can visualise a raw vector to see what one looks like
+
+We can also compare the similarity between two word vectors:
+
+
 
 ## Evaluation
 
@@ -108,6 +115,74 @@ Out: [('flugvöllur', 0.6099342107772827)]
 ```
 As expected!
 
+It can even model the relationship among grammatical terms, from a corpus that doesn't appear to have any explicit grammatical descriptions (please correct me if I am wrong). For example, what is, to a noun, what an adverb is to a verb?
+```markdown
+model.most_similar(positive=['nafnorð', 'atviksorð'], negative=['sagnorð'], topn=1)
+Out: [('lýsingarorð', 0.6917917132377625)]
+```
+An adjective!
 
+The word embeddings shown here are all good examples of good modelling, but you shouldn't think this is a perfect model by any means. For example, here are closest word vectors to _máltækni_ 
+
+```markdown
+In: model.most_similar('máltækni')
+Out[
+[('wallau-massenheim', 0.8737115859985352),
+ ('paprikuduft', 0.8696819543838501),
+ ('categories', 0.8686853647232056),
+ ('31:32', 0.8685649037361145),
+ ('15:51', 0.8675534129142761),
+ ('08:37', 0.8662518858909607),
+ ('14:01', 0.8656798005104065),
+ ('koparendur', 0.8647289276123047),
+ ('stjórnunarráðgjafi', 0.8633975386619568),
+ ('flatvagnar', 0.8632863163948059)]
+```
+Perhaps it is too cruel to judge such a small corpus on how well it can model such a technical word, even if its closest semantic neighbour is a German handball team, closely followed by paprika powder.
+
+Here are the most similar word vectors for (1) **pilot**, (2) **apple** and (3) **Iceland**:
+
+```markdown
+model.most_similar('flugmaður')
+Out: 
+[('flugstjóri', 0.6587222218513489),
+ ('farþegi', 0.6484204530715942),
+ ('flugvél', 0.6159329414367676),
+ ('þota', 0.6112388372421265),
+ ('þyrlur', 0.6025561094284058),
+ ('varðskip', 0.5978344082832336),
+ ('áhöfn', 0.592880368232727),
+ ('bílstjóri', 0.5810525417327881),
+ ('þyrla', 0.5693312883377075),
+ ('herskip', 0.5687568783760071)]
+ 
+In: model.most_similar('epli')
+Out: 
+[('baun', 0.9056194424629211),
+ ('gulrót', 0.8846516609191895),
+ ('hneta', 0.880598783493042),
+ ('vínber', 0.8719343543052673),
+ ('paprika', 0.8683988451957703),
+ ('appelsína', 0.8601030111312866),
+ ('ólífa', 0.8554715514183044),
+ ('ostur', 0.8518120050430298),
+ ('sulta', 0.8465861082077026),
+ ('salat', 0.8437827825546265)]
+ 
+model.most_similar('ísland')
+Out: 
+[('íslendingur', 0.5155368447303772),
+ ('norðurland', 0.4860343039035797),
+ ('land', 0.4806867241859436),
+ ('hérlendis', 0.4788222908973694),
+ ('danmörk', 0.4710685908794403),
+ ('grænland', 0.4706999659538269),
+ ('noregur', 0.4664274752140045),
+ ('akureyri', 0.4584369957447052),
+ ('bifröst', 0.43473801016807556),
+ ('írlandi', 0.4321120083332062)]
+ 
+```
+These seem more sensible. This goes to show the effect that good qualitiative data has on word embedding models.
 
 
