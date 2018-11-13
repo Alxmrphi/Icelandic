@@ -45,9 +45,11 @@ class MIM_Parser(object):
  
     def __iter__(self):
         for folder in os.listdir(self.mim_folder):
-            if os.path.isdir(folder):
+            if os.path.isdir(os.path.join(self.mim_folder, folder)):
                 current_folder = os.path.join(self.mim_folder, folder)
                 for file in os.listdir(current_folder):
+                    if not file.endswith('.xml'):
+                        continue
                     root = parse(os.path.join(current_folder, file))
                     for sentence in root.getElementsByTagName('s'):
                         words = sentence.getElementsByTagName('w')
